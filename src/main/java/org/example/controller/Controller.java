@@ -1,11 +1,9 @@
-package controller;
+package org.example.controller;
 
-import model.*;
-import view.MyFrame;
-import view.MyPanel;
-
-import java.awt.*;
+import org.example.model.*;
+import org.example.view.*;
 import java.awt.geom.Point2D;
+import java.awt.Point;
 
 public class Controller {
     Cat cat;

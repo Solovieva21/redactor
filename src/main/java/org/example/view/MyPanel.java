@@ -1,10 +1,8 @@
-package view;
+package org.example.view;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import controller.Controller;
-import java.awt.geom.Rectangle2D;
+import org.example.controller.Controller;
 
 public class MyPanel extends JPanel{
     Controller controller;
