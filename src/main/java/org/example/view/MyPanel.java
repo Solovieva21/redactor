@@ -1,46 +1,45 @@
 package org.example.view;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import org.example.controller.Controller;
 
 public class MyPanel extends JPanel{
     Controller controller;
-    public JButton b1;
-    public JButton b2;
-    public JButton b3;
-    public JTextField t1;
+    public JButton bRect;
+    public JButton bEllipse;
 
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        if(controller != null && controller.curShape != null){
+            g2.draw(controller.curShape);
+        }
+    }
 
     public MyPanel(Controller controller) {
         this.controller = controller;
-        b1 = new JButton("Кот");
-        b2 = new JButton("Собака");
-        b3 = new JButton("Говорить");
-        t1 = new JTextField("                  ");
-        add(b1);
-        add(b2);
-        add(b3);
-        add(t1);
+        bRect = new JButton("Прямоугольник");
+        bEllipse = new JButton("Эллипс");
+        add(bRect);
+        add(bEllipse);
 
-        b1.addActionListener(new ActionListener() {
+        bRect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.setCat();
+                controller.setRectangle();
             }
         });
-        b2.addActionListener(new ActionListener() {
+        bEllipse.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.setDog();
+                controller.setEllipse();
             }
         });
-        b3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SetText(controller.setSpeak());
-            }
-        });
+
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -55,13 +54,13 @@ public class MyPanel extends JPanel{
                 controller.mouseDragged(e.getPoint());
             }
         });
-
-
     }
-
-    public void SetText(String text){
-        t1.setText(text);
-    }
-
-
 }
+
+
+
+
+
+
+
+
