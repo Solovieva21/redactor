@@ -1,6 +1,4 @@
 package org.example.controller;
-
-import org.example.model.*;
 import org.example.view.*;
 
 import java.awt.geom.Ellipse2D;
