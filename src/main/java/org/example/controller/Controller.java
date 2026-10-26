@@ -1,44 +1,50 @@
 package org.example.controller;
-import org.example.view.*;
 
-import java.awt.geom.Ellipse2D;
+import org.example.model.MyShape;
+import org.example.view.MyFrame;
+import org.example.view.MyPanel;
+
+import java.awt.*;
 import java.awt.geom.Point2D;
-import java.awt.Point;
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.RectangularShape;
 
 public class Controller {
     MyPanel myPanel;
     MyFrame myFrame;
     Point2D[] points;
-    public RectangularShape curShape;
+    MyShape currentShape;
 
     public Controller() {
         points = new Point2D[2];
         myPanel = new MyPanel(this);
         myFrame = new MyFrame(myPanel);
-        curShape = new Rectangle2D.Double();
+        currentShape = new MyShape(new Rectangle2D.Double());
     }
 
     public void mousePressed(Point point) {
         points[0] = point;
     }
 
+    public void mouseDragged(Point point) {
+        points[1] = point;
+    }
+
     public void setRectangle() {
-        curShape = new Rectangle2D.Double();
+        currentShape.setRectangle2D();
+        points[0] = null;
+        points[1] = null;
     }
 
     public void setEllipse() {
-        curShape = new Ellipse2D.Double();
+        currentShape.setEllipse2D();
+        points[0] = null;
+        points[1] = null;
     }
 
-    public void mouseDragged(Point point) {
-        points[1] = point;
-        if (curShape != null && points[0] != null && points[1] != null) {
-            curShape.setFrameFromDiagonal(points[0], points[1]);
+    public void draw(Graphics2D g2) {
+        if (points[0] != null && points[1] != null) {
+            currentShape.setFrameFromDiagonal(points[0], points[1]);
+            currentShape.draw(g2);
         }
-        myPanel.repaint();
     }
 }
-
-
