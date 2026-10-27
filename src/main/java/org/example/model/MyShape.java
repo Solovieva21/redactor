@@ -26,13 +26,10 @@ public class MyShape {
         shape.setFrameFromDiagonal(point, point1);
     }
 
-    public MyShape setRectangle2D() {
-        shape = new Rectangle2D.Double();
-        return this;
-    }
+    public void setRectangle2D() {
+        shape = new Rectangle2D.Double();}
 
-    public MyShape setEllipse2D() {
+    public void setEllipse2D() {
         shape = new Ellipse2D.Double();
-        return this;
     }
 }
